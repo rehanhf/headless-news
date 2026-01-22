@@ -1,4 +1,5 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://mariadb.org" target="_blank"><img src="[https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgg3gcbgme6LIjDjGPzedZpZXLRgvcD013ZQ&s)" width="400" alt="Mariadb Logo"></a></p>
 
 <p align="center">
 # Headless News CMS (Laravel + MariaDB)
