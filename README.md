@@ -16,6 +16,20 @@ This API serves news content to mobile apps and frontend clients with sub-millis
 *   **Infrastructure:** Docker (Laravel Sail)
 *   **Architecture:** RESTful API / Headless
 
+## 📸 Visual Demo
+
+### 1. The Headless Architecture
+*Separation of concerns: The API (Backend) handles logic/data, while the Client (Frontend) handles presentation.*
+![Headless Split View](visuals/json-ui.png)
+
+### 2. Performance (Redis Cache)
+*Response times dropped from ~300ms (Database) to <50ms (Redis) on repeated requests.*
+![Network Tab](images/network.png)
+
+### 3. Search Engine
+*Native MariaDB Full-Text indexing in action.*
+![Search Demo](images/search-demo.gif)
+
 ## ⚡ Key Features
 *   **Advanced Search:** Implemented MariaDB Native Full-Text search (Natural Language Mode) instead of slow `LIKE` queries.
 *   **High Performance:** Implemented Redis caching strategies for hot endpoints (`/api/posts`), reducing DB load by 99% on repeated reads.
