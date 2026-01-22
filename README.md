@@ -4,19 +4,19 @@
 <p align="center">
 # Headless News CMS (Laravel + MariaDB)
 
-## 🚀 Overview
+## Overview
 A high-performance, containerized Headless CMS designed for omnichannel content delivery. Built with **Laravel 12**, optimized with **MariaDB Full-Text Search**, and accelerated by **Redis Caching**.
 
 This API serves news content to mobile apps and frontend clients with sub-millisecond response times.
 
-## 🛠 Tech Stack
+## Tech Stack
 *   **Framework:** Laravel 12 (API Mode)
 *   **Database:** MariaDB (optimized with Full-Text Indexing)
 *   **Cache:** Redis (Key-Value Store)
 *   **Infrastructure:** Docker (Laravel Sail)
 *   **Architecture:** RESTful API / Headless
 
-## 📸 Visual Demo
+## Visual Demo
 
 ### 1. The Headless Architecture
 *Separation of concerns: The API (Backend) handles logic/data, while the Client (Frontend) handles presentation.*
@@ -30,13 +30,13 @@ This API serves news content to mobile apps and frontend clients with sub-millis
 *Native MariaDB Full-Text indexing in action.*
 ![Search Demo](visuals/search-demo.gif)
 
-## ⚡ Key Features
+## Key Features
 *   **Advanced Search:** Implemented MariaDB Native Full-Text search (Natural Language Mode) instead of slow `LIKE` queries.
 *   **High Performance:** Implemented Redis caching strategies for hot endpoints (`/api/posts`), reducing DB load by 99% on repeated reads.
 *   **Standardized Output:** Uses Laravel API Resources to decouple database schema from JSON output.
 *   **Scalable Schema:** Many-to-Many relationships (Posts <-> Tags) via pivot tables.
 
-## 🏃‍♂️ How to Run
+## How to Run
 1.  **Clone & Install:**
     ```bash
     git clone https://github.com/your-username/headless-news.git
@@ -59,6 +59,6 @@ This API serves news content to mobile apps and frontend clients with sub-millis
 4.  **Test Client:**
     Open `http://localhost/news.html` to view the SPA Frontend.
 
-## 📡 API Endpoints
+## API Endpoints
 *   `GET /api/posts` - List latest news (Paginated)
 *   `GET /api/posts?search=keyword` - Full-text search through headlines and content
