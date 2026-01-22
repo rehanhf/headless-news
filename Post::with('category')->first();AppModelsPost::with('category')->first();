@@ -1,0 +1,25 @@
+[90m= [39m[34;4mApp\Models\Post[39;24m {#6044
+    [34mid[39m: [35m1[39m,
+    [34muser_id[39m: [35m1[39m,
+    [34mcategory_id[39m: [35m4[39m,
+    [34mtitle[39m: "[32mSit quae et natus sed blanditiis esse est est.[39m",
+    [34mslug[39m: "[32mmolestiae-laboriosam-veniam-doloremque-ab-officia-alias-cupiditate[39m",
+    [34mcontent[39m: """
+      [32mSapiente et hic qui. Beatae est repellendus dolorem incidunt et temporibus iusto. Perspiciatis similique quia ea dolores fugiat rem modi cum. Quod et nesciunt numquam voluptatem laborum voluptatem.[39m\n
+      \n
+      [32mVoluptate voluptatibus similique rerum quis praesentium laboriosam quia. Perferendis omnis et est tempora. Qui ipsum fuga consectetur et quia quis quae quia.[39m\n
+      \n
+      [32mIllo beatae soluta necessitatibus praesentium. Nulla libero illum itaque magnam blanditiis sapiente. Et consequatur id ut dolorum sint adipisci placeat. Consequatur neque possimus quaerat eius.[39m
+      """,
+    [34mstatus[39m: "[32mpublished[39m",
+    [34mcreated_at[39m: "[32m2026-01-22 07:13:28[39m",
+    [34mupdated_at[39m: "[32m2026-01-22 07:13:28[39m",
+    [34mcategory[39m: [34;4mApp\Models\Category[39;24m {#6463
+      [34mid[39m: [35m4[39m,
+      [34mname[39m: "[32msimilique[39m",
+      [34mslug[39m: "[32mdelectus-ut-qui-vel-sint[39m",
+      [34mcreated_at[39m: "[32m2026-01-22 07:13:28[39m",
+      [34mupdated_at[39m: "[32m2026-01-22 07:13:28[39m",
+    },
+  }
+

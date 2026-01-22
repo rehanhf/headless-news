@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Portal</title>
+    <!-- load tailwind css via cdn -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <!-- navbar -->
+    <nav class="bg-blue-900 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">News API Client</h1>
+            <div class="flex gap-2">
+                <input type="text" id="searchInput" placeholder="Search news..." 
+                       class="px-3 py-1 rounded text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button onclick="performSearch()" 
+                        class="bg-blue-600 px-4 py-1 rounded hover:bg-blue-500 transition">Go</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- main content area -->
+    <main class="container mx-auto p-4 mt-4">
+        
+        <!-- loading indicator -->
+        <div id="loading" class="text-center py-10 hidden">
+            <span class="text-2xl animate-pulse text-blue-900 font-bold">Loading Data...</span>
+        </div>
+
+        <!-- news grid -->
+        <div id="news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- javascript will inject html here -->
+        </div>
+
+        <!-- pagination controls -->
+        <div class="flex justify-center gap-4 mt-10">
+            <button id="prevBtn" onclick="changePage('prev')" class="px-4 py-2 bg-white shadow rounded disabled:opacity-50" disabled>Previous</button>
+            <span id="pageInfo" class="py-2 text-gray-600">Page 1</span>
+            <button id="nextBtn" onclick="changePage('next')" class="px-4 py-2 bg-white shadow rounded disabled:opacity-50" disabled>Next</button>
+        </div>
+
+    </main>
+
+    <script>
+        //state management
+        let currentPage = 1;
+        let currentSearch = '';
+
+        //on load, fetch data
+        document.addEventListener('DOMContentLoaded', () => fetchNews());
+
+        //the fetch logic
+        async function fetchNews(page = 1, search = '') {
+            //show loader
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('news-container').innerHTML = '';
+
+            //construct url
+            let url = `/api/posts?page=${page}`;
+            if(search) url += `&search=${search}`;
+
+            try {
+                //call the laravel api
+                const response = await fetch(url);
+                const json = await response.json();
+                
+                //render the data
+                renderPosts(json.data);
+                updatePagination(json.meta, json.links);
+                
+                currentPage = json.meta.current_page;
+
+            } catch (error) {
+                console.error('API Error:', error);
+                alert('Failed to load news. Is Redis/MariaDB running?');
+            } finally {
+                //hide loader
+                document.getElementById('loading').classList.add('hidden');
+            }
+        }
+
+        //render html cards
+        function renderPosts(posts) {
+            const container = document.getElementById('news-container');
+            
+            if (posts.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 col-span-3 text-center">No articles found.</p>';
+                return;
+            }
+
+            posts.forEach(post => {
+                const html = `
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+                            <span class="text-xs font-bold text-blue-600 uppercase tracking-wide">${post.category}</span>
+                            <span class="text-xs text-gray-400">${post.published_at}</span>
+                        </div>
+                        <div class="p-4">
+                            <h2 class="text-xl font-bold mb-2 text-gray-900">${post.headline}</h2>
+                            <p class="text-gray-600 mb-4 text-sm">${post.summary}...</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                ${post.tags.map(tag => `<span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded text-xs">#${tag}</span>`).join('')}
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xs">
+                                    ${post.author.charAt(0)}
+                                </div>
+                                <span class="text-sm text-gray-700 font-medium">${post.author}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        //handle buttons
+        function updatePagination(meta, links) {
+            document.getElementById('pageInfo').innerText = `Page ${meta.current_page} of ${meta.last_page}`;
+            document.getElementById('prevBtn').disabled = !links.prev;
+            document.getElementById('nextBtn').disabled = !links.next;
+        }
+
+        function changePage(direction) {
+            if(direction === 'next') fetchNews(currentPage + 1, currentSearch);
+            if(direction === 'prev') fetchNews(currentPage - 1, currentSearch);
+        }
+
+        function performSearch() {
+            currentSearch = document.getElementById('searchInput').value;
+            fetchNews(1, currentSearch);
+        }
+    </script>
+</body>
+</html>
