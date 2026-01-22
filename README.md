@@ -24,11 +24,11 @@ This API serves news content to mobile apps and frontend clients with sub-millis
 
 ### 2. Performance (Redis Cache)
 *Response times dropped from ~300ms (Database) to <50ms (Redis) on repeated requests.*
-![Network Tab](images/network.png)
+![Network Tab](visuals/network.png)
 
 ### 3. Search Engine
 *Native MariaDB Full-Text indexing in action.*
-![Search Demo](images/search-demo.gif)
+![Search Demo](visuals/search-demo.gif)
 
 ## ⚡ Key Features
 *   **Advanced Search:** Implemented MariaDB Native Full-Text search (Natural Language Mode) instead of slow `LIKE` queries.
